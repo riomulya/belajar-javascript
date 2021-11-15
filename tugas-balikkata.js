@@ -6,7 +6,7 @@ function balikkata(kata) {
     return simpan
 }
 //testcase
-console.log(balikkata("recursion!"))
+console.log(balikkata("Niomic!"))
 console.log(balikkata("JavaScript"))
 console.log(balikkata("alohahola"))
 console.log(balikkata("Jawa_Barat"))
