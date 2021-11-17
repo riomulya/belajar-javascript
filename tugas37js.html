@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Belajar Javascript - NIOMIC</title>
+</head>
+
+<body>
+    <button type="button" onclick="tombol()" name="button">Jalankan</button>
+    <br />
+    <br />
+    <hr />
+    Atribut <b>getNamedItem()</b> :
+    <p id="1">contoh</p>
+    <hr />
+    Atribut <b>name()</b> :
+    <p id="2">contoh</p>
+    <hr />
+    Atribut <b>length()</b> :
+    <p id="3">contoh</p>
+    <hr />
+    <script>
+        function tombol() {
+            var a = document.getElementsByTagName('button')[0];
+            var b = a.attributes.getNamedItem('onclick').value;
+            document.getElementById('1').innerHTML = b;
+            var b = a.attributes[0].name;
+            document.getElementById('2').innerHTML = b;
+            var b = a.attributes.length;
+            document.getElementById('3').innerHTML = b;
+        }
+    </script>
+</body>
+
+</html>
