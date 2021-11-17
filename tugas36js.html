@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Belajar Javascript - NIOMIC</title>
+</head>
+
+<body>
+    <h2>Login</h2>
+    <p class="">- Department of Finance -</p>
+    <input type="email" id="email" value="email" /> <br /><br />
+    <input type="username" id="username" value="username" /> <br /><br />
+    <input type="password" class="password" value="password" /> <br /><br />
+
+    <button type="button" onclick="call()" name="button">Jalan</button>
+    <!-- ini script -->
+    <script>
+        function call() {
+            console.log(document.getElementById('email'))
+            console.log(document.getElementsByTagName('h2'))
+            console.log(document.getElementsByClassName('password'))
+            console.log(document.querySelector('P'))
+        }
+    </script>
+</body>
+
+</html>
