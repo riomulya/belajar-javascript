@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <select name="menu" id="pilih" onchange="klik()">
+        <option value="red">merah</option>
+        <option value="blue">biru</option>
+        <option value="yellow">kuning</option>
+        <option value="white">putih</option>
+    </select>
+    <p id="contoh">Saat Kamu Memilih Warna, Background Akan berubah</p>
+    <script>
+        function klik() {
+            var a = document.getElementById("pilih").value;
+            document.body.style.backgroundColor = a;
+        }
+    </script>
+</body>
+
+</html>
