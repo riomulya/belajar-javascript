@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Login</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background: #C0C0C0;
+        }
+
+        h1 {
+            text-align: center;
+            font-weight: 300;
+        }
+
+        .tulisan_login {
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .kotak_login {
+            width: 350px;
+            background: white;
+
+            margin: 80px auto;
+            padding: 30px 20px;
+        }
+
+        label {
+            font-size: 11pt;
+        }
+
+        .form_login {
+            box-sizing: border-box;
+            width: 100%;
+            padding: 10px;
+            font-size: 11pt;
+            margin-bottom: 20px;
+        }
+
+        .tombol_login {
+            background: #FF7F00;
+            color: white;
+            font-size: 11pt;
+            width: 100%;
+            border: none;
+            border-radius: 3px;
+            padding: 10px 20px;
+        }
+
+        .tombol_lanjut {
+            background: red;
+            color: white;
+            font-size: 11pt;
+            width: 100%;
+            border: none;
+            border-radius: 3px;
+            padding: 10px 20px;
+        }
+
+        .link {
+            color: #232323;
+            text-decoration: none;
+            font-size: 10pt;
+        }
+    </style>
+    <script>
+        function buat_login() {
+            var elem = document.getElementById("X");
+            elem.parentElement.removeChild(elem);
+
+            var par = document.createElement("p");
+            par.className = "tulisan_login";
+            par.innerHTML = "Silahkan mendaftar";
+
+            var element = document.getElementsByTagName("div")[0];
+            element.appendChild(par);
+
+            var form = document.createElement("FORM");
+            element.appendChild(form);
+
+            var label1 = document.createElement("label");
+            label1.innerHTML = "Nama User";
+            form.appendChild(label1);
+
+            var input_namauser = document.createElement("input");
+            input_namauser.type = "text";
+            input_namauser.name = "Nama User";
+            input_namauser.placeholder = "Nama User...";
+            input_namauser.className = "form_login";
+            form.appendChild(input_namauser);
+
+            var label2 = document.createElement("label");
+            label2.innerHTML = "Nomor Handphone";
+            form.appendChild(label2);
+
+            var input_nomorhp = document.createElement("input");
+            input_nomorhp.type = "number";
+            input_nomorhp.name = "Nomor Handphone";
+            input_nomorhp.placeholder = "Nomor Handphone.";
+            input_nomorhp.className = "form_login";
+            form.appendChild(input_nomorhp);
+
+            var label3 = document.createElement("label");
+            label3.innerHTML = "Username";
+            form.appendChild(label3);
+
+            var input_username = document.createElement("input");
+            input_username.type = "text";
+            input_username.name = "username";
+            input_username.placeholder = "Username atau email ..";
+            input_username.className = "form_login";
+            form.appendChild(input_username);
+
+            var label4 = document.createElement("label");
+            label4.innerHTML = "Password";
+            form.appendChild(label4);
+
+            var input_password = document.createElement("input");
+            input_password.type = "password";
+            input_password.name = "password";
+            input_password.placeholder = "Password ..";
+            input_password.className = "form_login";
+            form.appendChild(input_password);
+
+            var tombol = document.createElement("input");
+            tombol.type = "submit";
+            tombol.className = "tombol_login";
+            form.appendChild(tombol);
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Membuat Form Login Dengan Javascript</h1>
+    <div class="kotak_login">
+        <button id="X" onclick="buat_login()" class="tombol_lanjut">Klik disini Untuk Lanjut</button>
+    </div>
+</body>
+
+</html>
