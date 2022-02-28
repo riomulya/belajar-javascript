@@ -317,17 +317,17 @@
 // console.log(A4.match(multipleA));
 // console.log(A2.match(multipleA));
 
-let A4 = "haaaah";
-let A2 = "haah";
-let A100 = "h" + "a".repeat(100) + "h";
-let multipleA = /ha{3,}h/;
-console.log(multipleA.test(A4));
-console.log(multipleA.test(A2));
-console.log(multipleA.test(A100));
+// let A4 = "haaaah";
+// let A2 = "haah";
+// let A100 = "h" + "a".repeat(100) + "h";
+// let multipleA = /ha{3,}h/;
+// console.log(multipleA.test(A4));
+// console.log(multipleA.test(A2));
+// console.log(multipleA.test(A100));
 
-let password = "banan1";
-let checkPass = /(?=\w{3,6})|(?=\D*\d)/;
-console.log(checkPass.test(password));
+// let password = "banan1";
+// let checkPass = /(?=\w{3,6})|(?=\D*\d)/;
+// console.log(checkPass.test(password));
 
 // console.log(result);
 
@@ -336,3 +336,119 @@ console.log(checkPass.test(password));
 // console.log(firstRegex.test(firstString));
 // let notFirst = "You can't find Ricky now.";
 // console.log(firstRegex.test(notFirst));
+
+// let output =
+//   "Get this to show once in the freeCodeCamp console and not at all in the browser console";
+// console.log(output);
+// console.clear(output);
+// // console.clear()
+
+// let seven = 7;
+// let three = "3";
+// console.log(seven + three);
+// // Only change code below this line
+// console.log(typeof seven);
+// console.log(typeof three);
+
+// let receivables = 10;
+// let payables = 8;
+// let netWorkingCapital = receivables - payables;
+// console.log(`Net working capital is: ${netWorkingCapital}`);
+
+// function countToFive() {
+//   let firstFive = "12345";
+//   // Only change code below this line
+//   for (let i = 0; i < firstFive.length; i++) {
+//     // Only change code above this line
+//     console.log(firstFive[i]);
+//   }
+// }
+
+// console.log(countToFive());
+
+// let alphabet = "abcdefghijklmnopqrstuvwxyz";
+// let len = alphabet.length;
+// for (let i = 0; i <= len; i++) {
+//   console.log(alphabet[i]);
+// }
+// for (let j = 1; j < len; j++) {
+//   console.log(alphabet[j]);
+// }
+// for (let k = 0; k < len; k++) {
+//   console.log(alphabet[k]);
+// }
+
+// function zeroArray(m, n) {
+//   let newArray = [];
+//   for (let i = 0; i < m; i++) {
+//     let row = []; /* <-----  row has been declared inside the outer loop.
+//        Now a new row will be initialised during each iteration of the outer loop allowing
+//        for the desired matrix. */
+//     for (let j = 0; j < n; j++) {
+//       row.push(0);
+//     }
+//     newArray.push(row);
+//   }
+//   return newArray;
+// }
+// let matrix = zeroArray(3, 2);
+// console.log(matrix);
+
+// function copyMachine(arr, num) {
+//   let newArr = [];
+//   while (num >= 1) {
+//     // Only change code below this line
+//     console.log(arr);
+//     newArr.push(arr);
+//     // newArr = arr;
+//     // Only change code above this line
+//     num--;
+//   }
+//   return newArr;
+// }
+
+// console.log(copyMachine([true, false, true], 2));
+
+// function quickCheck(arr, elem) {
+//   // Only change code below this line
+//   if (arr.indexOf(elem) => 0) {
+//     return true;
+//   } else {
+//     return false;
+//   }
+//   // Only change code above this line
+// }
+
+// console.log(quickCheck(["squash", "onions", "shallots"], "mushrooms"));
+// console.log(quickCheck(["onions", "squash", "shallots"], "onions"));
+
+// let data = ["onions", "squash", "shallots"];
+
+// console.log(data.indexOf("onions"));
+
+function filteredArray(arr, elem) {
+  let newArr = [];
+  // change code below this line
+
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i].indexOf(elem) == -1) {
+      //Checks every parameter for the element and if is NOT there continues the code
+      newArr.push(arr[i]); //Inserts the element of the array in the new filtered array
+    }
+  }
+
+  // change code above this line
+  return newArr;
+}
+
+console.log(
+  filteredArray(
+    [
+      [3, 2, 3],
+      [1, 6, 3],
+      [3, 13, 26],
+      [19, 3, 9],
+    ],
+    3
+  )
+);
