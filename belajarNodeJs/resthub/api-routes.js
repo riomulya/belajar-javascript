@@ -1,8 +1,8 @@
 //api-router js
 
 //import express routes
-const express = require("express");
-const router = express.Router();
+// const express = require("express");
+let router = require("express").Router();
 
 //set default api response
 router.get("/", (req, res) => {
@@ -13,7 +13,7 @@ router.get("/", (req, res) => {
 });
 
 //import contact controller
-const contactController = require("./contactController");
+var contactController = require("./contactController");
 
 //contact routes
 router

@@ -19,7 +19,7 @@ exports.index = function (req, res) {
 };
 // handle create contact with error respon
 exports.new = function (req, res) {
-  let contact = new Contact();
+  var contact = new Contact();
   contact.name = req.body.name ? req.body.name : contact.name;
   contact.gender = req.body.gender;
   contact.email = req.body.email;
@@ -90,7 +90,7 @@ exports.delete = function (req, res) {
     {
       _id: req.params.contact_id,
     },
-    function (err, contacts) {
+    function (err, contact) {
       if (err) res.send(err);
       res.json({
         Status: "Success",
