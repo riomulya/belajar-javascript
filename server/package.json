@@ -1,0 +1,8 @@
+{
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  },
+  "dependencies": {
+    "@hapi/hapi": "^20.2.2"
+  }
+}

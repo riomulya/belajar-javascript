@@ -1,22 +1,32 @@
 const http = require("http");
 
 const requestListener = (request, response) => {
-  response.setHeader("Content-Type", "text/html");
-  response.statusCode = 200;
+  response.setHeader("Content-Type", "application/json");
+  response.setHeader("X-Powered-By", "NodeJS");
+
   const { method, url } = request;
 
   if (url === "/") {
     if (method === "GET") {
-      response.end("<h1>Ini Home Page!</h1>");
+      response.statusCode = 200;
+      response.end(JSON.stringify({ message: "Ini Home Page!" }));
     } else {
+      response.statusCode = 400;
       response.end(
-        `<h1>Halaman tidak dapat diakses dengan ${method} request</h1>`
+        JSON.stringify({
+          message: `Halaman tidak dapat diakses dengan ${method} request`,
+        })
       );
     }
   }
   if (url === "/about") {
     if (method === "GET") {
-      response.end("<h1>Ini About Page!</h1>");
+      response.statusCode = 200;
+      response.end(
+        JSON.stringify({
+          message: "Ini About Page!",
+        })
+      );
     } else if (method === "POST") {
       let body = [];
 
@@ -27,15 +37,28 @@ const requestListener = (request, response) => {
       request.on("end", () => {
         body = Buffer.concat(body).toString();
         const { name } = JSON.parse(body);
-        response.end(`<h1>Hai, ${name}! Ini Adalah About Page</h1>`);
+        response.statusCode = 200;
+        response.end(
+          JSON.stringify({
+            message: `Hai, ${name}! Ini Adalah About Page`,
+          })
+        );
       });
     } else {
+      response.statusCode = 400;
       response.end(
-        `<h1>Halaman tidak dapat diakses dengan ${method} request</h1>`
+        JSON.stringify({
+          message: `Halaman tidak dapat diakses dengan ${method} request`,
+        })
       );
     }
   } else {
-    response.end("<h1>Halaman Tidak Ditemukan!</h1>");
+    response.statusCode = 404;
+    response.end(
+      JSON.stringify({
+        message: "Halaman tidak ditemukan!",
+      })
+    );
   }
 };
 
