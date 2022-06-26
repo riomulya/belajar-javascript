@@ -14,7 +14,6 @@ const init = async () => {
   });
   server.route(routes);
   await server.start();
-  console.log(`Server Berjalan di Dalam ${server.info.uri}`);
 };
 
 init();
