@@ -452,3 +452,10 @@ console.log(
     3
   )
 );
+
+let a = 0;
+let b = 1;
+
+const result = a === b ? true : false;
+
+console.log(result);

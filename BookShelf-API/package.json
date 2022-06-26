@@ -8,6 +8,7 @@
     "nodemon": "^2.0.16"
   },
   "scripts": {
+    "start": "nodemon ./src/server.js",
     "lint": "eslint ./"
   },
   "dependencies": {

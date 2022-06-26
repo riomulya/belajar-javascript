@@ -69,7 +69,7 @@ const addBooksHandler = (request, h) => {
   }
   // jika gagal ditambahkan
   const response = h.response({
-    status: 'error',
+    status: 'fail',
     message: 'Buku gagal ditambahkan',
   });
   response.code(500);
@@ -78,30 +78,26 @@ const addBooksHandler = (request, h) => {
 
 const getAllBooksHandler = (request, h) => {
   const { name, reading, finished } = request.query;
-  let filteredBooks = books;
-  //error falssy values in javascript
+  let booksFilter = books;
+  // //check thruty values in javascript
   if (name) {
-    filteredBooks = filteredBooks.filter((book) =>
-      book.name.toLowerCase().includes(name.toLowerCase())
+    booksFilter = booksFilter.filter((book) =>
+      //change querry name to upper case for flexible search( non-case sensitive )
+      book.name.toUpperCase().includes(name.toUpperCase())
     );
   }
-  //error falssy values in javascript
-  if (reading) {
-    filteredBooks = filteredBooks.filter(
-      (book) => book.reading === Boolean(reading)
-    );
-  }
-  //error falssy values in javascript
-  if (finished) {
-    filteredBooks = filteredBooks.filter(
-      (book) => book.finished === Boolean(finished)
-    );
-  }
+
+  //ternary operator, check conditional if reading are true then finished are false and vice versa
+  booksFilter = reading
+    ? booksFilter.filter((book) => Boolean(book.reading) === !!Number(reading))
+    : booksFilter.filter(
+        (book) => Boolean(book.finished) === !!Number(finished)
+      );
 
   const response = h.response({
     status: 'success',
     data: {
-      books: filteredBooks.map((book) => ({
+      books: booksFilter.map((book) => ({
         id: book.id,
         name: book.name,
         publisher: book.publisher,
@@ -115,7 +111,7 @@ const getAllBooksHandler = (request, h) => {
 const getBookByIdHandler = (request, h) => {
   const { id } = request.params;
   const book = books.filter((bookData) => bookData.id === id)[0];
-  //error falssy values in javascript
+  //check truthy values in javascript (book are not undefined)
   if (book) {
     return {
       status: 'success',
@@ -149,7 +145,7 @@ const editBookByIdHandler = (request, h) => {
   const index = books.findIndex((book) => book.id === id);
   if (index !== -1) {
     //error falssy values in javascript
-    if (name) {
+    if (!name) {
       const response = h.response({
         status: 'fail',
         message: 'Gagal memperbarui buku. Mohon isi nama buku',
@@ -166,8 +162,8 @@ const editBookByIdHandler = (request, h) => {
       response.code(400);
       return response;
     }
-    //ternary operator
 
+    //ternary operator
     const finished = readPage === pageCount ? true : false;
     books[index] = {
       ...books[index],
