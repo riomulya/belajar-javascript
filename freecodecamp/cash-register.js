@@ -1,121 +1,64 @@
+var denom = [
+  { name: 'ONE HUNDRED', val: 100 },
+  { name: 'TWENTY', val: 20 },
+  { name: 'TEN', val: 10 },
+  { name: 'FIVE', val: 5 },
+  { name: 'ONE', val: 1 },
+  { name: 'QUARTER', val: 0.25 },
+  { name: 'DIME', val: 0.1 },
+  { name: 'NICKEL', val: 0.05 },
+  { name: 'PENNY', val: 0.01 },
+];
+
 function checkCashRegister(price, cash, cid) {
-  var denom = [
-    ['ONE HUNDRED', 100],
-    ['TWENTY', 20],
-    ['TEN', 10],
-    ['FIVE', 5],
-    ['ONE', 1],
-    ['QUARTER', 0.25],
-    ['DIME', 0.1],
-    ['NICKEL', 0.05],
-    ['PENNY', 0.01],
-  ];
-  cid = cid.reverse();
-  let change = (cash - price) * 100;
-  let amount_money = 0,
-    cidChange = [];
-  cid.forEach((e) => {
-    amount_money += e[1];
-  });
+  var volume_up = [];
+  let change = cash - price;
+  var register = cid.reduce(
+    (acc, curr) => {
+      acc.total += curr[1];
+      acc[curr[0]] = curr[1];
+      console.log(acc);
+      return acc;
+    },
+    { total: 0 }
+  );
 
-  amount_money *= 100;
-  // console.log(amount_money, change);
-  // if (change > amount_money) {
-  //   return { status: 'INSUFFICIENT_FUNDS', change: [] };
-  // }
-  if (change === amount_money) {
-    return { status: 'CLOSED', change: cid.reverse() };
+  if (register.total === change) {
+    return { status: 'CLOSED', change: cid };
   }
-
-  denom.forEach((e) => {
-    let denomInt = e[1] * 100;
-    change -= denomInt;
-
-    console.log(change);
-  });
-
-  console.log(change);
-  // denom.forEach((e) => {
-  //   if (e[1] <= change) {
-  //     let denomMultiple = e[1] * 100;
-  //     console.log(denomMultiple);
-  //     change = change - denom;
-  //     cidChange.push(e[1]);
-  //   }
-  // });
-
-  if (change !== 0) {
+  if (register.total < change) {
     return { status: 'INSUFFICIENT_FUNDS', change: [] };
   }
-  return cid;
+  denom = denom.reverse();
+  denom.forEach((e) => {
+    var temp = 0;
+    while (register[e.name] > 0 && change >= e.val) {
+      change -= e.val;
+      register[e.name] -= e.val;
+      temp += e.val;
+      change = Math.round(change * 100) / 100;
+    }
+    if (temp > 0) {
+      volume_up.push([e.name, Math.round(temp * 100) / 100]);
+    }
+  });
+
+  if (volume_up.length < 1 || change > 0) {
+    return { status: 'INSUFFICIENT_FUNDS', change: [] };
+  }
+  return { status: 'OPEN', change: volume_up };
 }
 
 console.log(
   checkCashRegister(19.5, 20, [
-    ['PENNY', 1.01],
-    ['NICKEL', 2.05],
-    ['DIME', 3.1],
-    ['QUARTER', 4.25],
-    ['ONE', 90],
-    ['FIVE', 55],
-    ['TEN', 20],
-    ['TWENTY', 60],
-    ['ONE HUNDRED', 100],
+    ['PENNY', 0.01],
+    ['NICKEL', 0],
+    ['DIME', 0],
+    ['QUARTER', 0],
+    ['ONE', 1],
+    ['FIVE', 0],
+    ['TEN', 0],
+    ['TWENTY', 0],
+    ['ONE HUNDRED', 0],
   ])
 );
-
-// console.log(
-//   checkCashRegister(3.26, 100, [
-//     ['PENNY', 1.01],
-//     ['NICKEL', 2.05],
-//     ['DIME', 3.1],
-//     ['QUARTER', 4.25],
-//     ['ONE', 90],
-//     ['FIVE', 55],
-//     ['TEN', 20],
-//     ['TWENTY', 60],
-//     ['ONE HUNDRED', 100],
-//   ])
-// );
-
-// console.log(
-//   checkCashRegister(19.5, 20, [
-//     ['PENNY', 1.01],
-//     ['NICKEL', 2.05],
-//     ['DIME', 3.1],
-//     ['QUARTER', 4.25],
-//     ['ONE', 90],
-//     ['FIVE', 55],
-//     ['TEN', 20],
-//     ['TWENTY', 60],
-//     ['ONE HUNDRED', 100],
-//   ])
-// );
-
-// console.log(
-//   checkCashRegister(19.5, 20, [
-//     ['PENNY', 0.01],
-//     ['NICKEL', 0],
-//     ['DIME', 0],
-//     ['QUARTER', 0],
-//     ['ONE', 0],
-//     ['FIVE', 0],
-//     ['TEN', 0],
-//     ['TWENTY', 0],
-//     ['ONE HUNDRED', 0],
-//   ])
-// );
-
-// console.log(
-//   checkCashRegister(19.5, 20, [
-//     ['PENNY', 0.5],
-//     ['NICKEL', 0],
-//     ['DIME', 0],
-//     ['QUARTER', 0],
-//     ['ONE', 0],
-//     ['FIVE', 0],
-//     ['TEN', 0],
-//     ['TWENTY', 0],
-//     ['ONE HUNDRED', 0],
-//   ])
-// );
